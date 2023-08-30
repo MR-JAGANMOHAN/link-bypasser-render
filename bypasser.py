@@ -1276,13 +1276,14 @@ def gdtot(url):
     except Exception as e:
         return (
             f'ERROR: {e.__class__.__name__} with {token_url}')
-    path = re.findall('\("(.*?)"\)', token_page.text)
+    path = re.findall(r'"(.*?)"', token_page.text)
     if not path:
         return ('ERROR: Cannot bypass this')
     path = path[0]
     raw = urlparse(token_url)
     final_url = f'{raw.scheme}://{raw.hostname}{path}'
     return ddl.sharer_scraper(final_url)
+
 
 
 ##################################################################
